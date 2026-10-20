@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#eaf7f0">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icon-192.png">
+<title>שלב איציק! | מעקב הבריאות שלי</title>
+<style>
+:root{--ink:#17324a;--muted:#668092;--green:#178653;--green2:#dff5e8;--blue:#e6f4ff;--peach:#fff0e9;--yellow:#fff5d9;--paper:#fff;--line:#e3edf0;--shadow:0 10px 30px #17324a12}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#e8f7f0 0,#f4f9ff 48%,#fff7ed 100%);font-family:Arial,"Noto Sans Hebrew",sans-serif;color:var(--ink);min-height:100vh}
+main{max-width:760px;margin:auto;padding:18px 14px 100px}.hero{position:relative;overflow:hidden;border-radius:28px;padding:25px 22px;color:#fff;background:linear-gradient(120deg,#176b50,#258f77 55%,#6ebba1);box-shadow:var(--shadow)}
+.hero:after{content:"";position:absolute;left:-25px;bottom:-65px;width:190px;height:190px;border-radius:50%;background:#ffffff15}
+.topline{display:flex;justify-content:space-between;gap:12px;align-items:center}.eyebrow{font-size:13px;opacity:.85}.hero h1{font-size:clamp(30px,7vw,42px);margin:6px 0}.hero p{margin:0;line-height:1.5;max-width:430px}.hero .date{font-size:13px;background:#ffffff24;padding:8px 11px;border-radius:14px;white-space:nowrap}
+.sober{margin-top:14px;display:flex;align-items:center;gap:14px;background:#ffffffed;border:1px solid #ffffff;border-radius:22px;padding:15px;color:var(--ink);box-shadow:var(--shadow)}
+.sober .emoji{font-size:38px}.sober strong{font-size:23px;color:var(--green)}.sober p{margin:4px 0 0;color:var(--muted);font-size:13px}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:25px 3px 12px}.section-title h2{font-size:21px;margin:0}.sub{font-size:12px;color:var(--muted)}
+.progress-card,.note-card,.streak-card{background:#ffffffed;border:1px solid #fff;border-radius:22px;padding:17px;box-shadow:var(--shadow)}
+.progress-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.count{font-weight:800;color:var(--green);font-size:22px}.bar{height:10px;border-radius:99px;background:#e6eeef;overflow:hidden;margin-top:12px}.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,#178653,#76c99b);border-radius:99px;transition:width .25s}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.habit{border-radius:22px;padding:16px;border:1px solid #fff;box-shadow:var(--shadow);min-height:195px;display:flex;flex-direction:column}.habit.green{background:linear-gradient(145deg,#e5f8ec,#f8fffa)}.habit.blue{background:linear-gradient(145deg,#e7f5ff,#f9fcff)}.habit.peach{background:linear-gradient(145deg,#fff0e9,#fffaf7)}.habit.yellow{background:linear-gradient(145deg,#fff5d9,#fffdf4)}
+.habit .symbol{font-size:30px}.habit h3{margin:9px 0 6px;font-size:17px}.habit p{font-size:13px;line-height:1.5;color:#5d7482;margin:0 0 13px;flex:1}.toggle{border:0;border-radius:14px;padding:12px 10px;background:#fff;color:var(--ink);font-weight:700;font-size:14px;cursor:pointer;border:1px solid #dce8e5}.habit.done .toggle{background:var(--green);color:#fff;border-color:var(--green)}.habit.done{outline:2px solid #75c89a}.toggle:focus,button:focus,input:focus,textarea:focus{outline:3px solid #80c9b0;outline-offset:2px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.mini{padding:15px;border-radius:20px;background:#ffffffed;border:1px solid white;box-shadow:var(--shadow)}.mini h3{margin:0 0 8px;font-size:16px}.mini p{margin:0;font-size:13px;color:var(--muted);line-height:1.45}.counter{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px}.counter button{width:38px;height:38px;border:0;border-radius:13px;background:#e8f5ef;font-size:22px;color:var(--green);cursor:pointer}.counter strong{font-size:25px}
+.note-card textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px;font:inherit;resize:vertical;min-height:82px;background:#fbfdfd}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.primary,.secondary{border:0;border-radius:13px;padding:12px 14px;font-weight:700;cursor:pointer}.primary{background:var(--green);color:white}.secondary{background:#edf4f5;color:var(--ink)}
+.motivation{margin-top:14px;border-radius:20px;padding:18px;background:linear-gradient(110deg,#fff5d9,#fff);border:1px solid #ffebbf;text-align:center;font-size:17px;font-weight:700;line-height:1.5}.foot{margin-top:18px;text-align:center;color:var(--muted);font-size:12px;line-height:1.5}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#17324a;color:white;padding:12px 16px;border-radius:14px;box-shadow:var(--shadow);display:none;max-width:90vw;z-index:5}
+@media(max-width:460px){main{padding:12px 10px 90px}.hero{padding:20px 17px}.sober{padding:12px}.grid{gap:9px}.habit{padding:13px;min-height:205px}.habit h3{font-size:16px}.two{gap:9px}.mini{padding:12px}.hero .date{font-size:11px}.grid .symbol{font-size:26px}}
+</style>
+</head>
+<body>
+<main>
+  <header class="hero">
+    <div class="topline"><div><div class="eyebrow">המסע שלך, בקצב שלך</div><h1>שלב איציק! 🌱</h1></div><div class="date" id="today"></div></div>
+    <p>כל יום קטן מוביל לשינוי גדול. לא צריך להיות מושלם — רק להמשיך.</p>
+  </header>
+
+  <section class="sober" aria-label="מעקב הפסקת עישון">
+    <div class="emoji">🚭</div><div><div class="sub">ההישג שלך עד היום</div><strong id="smokeDays">17 ימים בלי סיגריות!</strong><p>התחלת ב־3/10. כל יום נוסף הוא ניצחון.</p></div>
+  </section>
+
+  <div class="section-title"><h2>היעדים שלי להיום</h2><span class="sub" id="progressText">0 מתוך 4</span></div>
+  <section class="progress-card">
+    <div class="progress-head"><strong>כל צעד נחשב</strong><span class="count" id="percent">0%</span></div>
+    <div class="bar"><span id="progressBar"></span></div>
+    <p class="sub" id="encouragement" style="margin:10px 0 0">מתחילים בקטן — גם צעד אחד הוא התקדמות.</p>
+  </section>
+
+  <div class="grid" style="margin-top:12px">
+    <article class="habit green" id="card-activity"><div class="symbol">👟</div><h3>5 דקות תנועה</h3><p>3 דקות צעידה במקום, דקה קימה מכיסא ודקה הרמת ברכיים.</p><button class="toggle" data-habit="activity">סמן שביצעתי</button></article>
+    <article class="habit blue" id="card-vegetable"><div class="symbol">🥒</div><h3>ירק בארוחת הבוקר</h3><p>מלפפון, עגבנייה, פלפל או ירק אחר שאתה אוהב.</p><button class="toggle" data-habit="vegetable">סמן שאכלתי</button></article>
+    <article class="habit yellow" id="card-snacks"><div class="symbol">🍎</div><h3>בלי נשנושים עד הצהריים</h3><p>נמנע מנשנושים לא מתוכננים עד אחרי ארוחת צהריים. רעב אמיתי? אוכלים.</p><button class="toggle" data-habit="snacks">עמדתי במשימה</button></article>
+    <article class="habit peach" id="card-smokeFree"><div class="symbol">🏆</div><h3>נשארתי ללא סיגריות</h3><p>שומרים על ההישג — בלי אשמה ובלי לוותר אחרי יום קשה.</p><button class="toggle" data-habit="smokeFree">עבר עוד יום ללא עישון</button></article>
+  </div>
+
+  <div class="two">
+    <section class="mini"><h3>🍽️ ארוחת צהריים</h3><p>תזכורת יומית בשעה 13:00. ארוחה מסודרת לפני שמחליטים אם צריך עוד משהו.</p><div class="actions"><button class="primary" id="lunchDone">אכלתי צהריים ✓</button></div><p id="lunchStatus" style="margin-top:8px">עוד לא סומן היום</p></section>
+    <section class="mini"><h3>🚭 סופרים הצלחות</h3><p>מספר הסיגריות שעישנת היום. כל יום ללא סיגריות מקרב אותך ליעד.</p><div class="counter"><button id="minus" aria-label="הפחת סיגריה">−</button><strong id="cigCount">0</strong><button id="plus" aria-label="הוסף סיגריה">+</button></div></section>
+  </div>
+
+  <div class="section-title"><h2>מילה לעצמי</h2><span class="sub">רגע של התבוננות</span></div>
+  <section class="note-card"><label for="note" class="sub" style="display:block;margin-bottom:8px">מה הצליח לי היום? מה אנסה מחר?</label><textarea id="note" placeholder="אפילו הצלחה קטנה שווה לציין…"></textarea><div class="actions"><button class="primary" id="saveNote">שמור הערה</button><button class="secondary" id="export">ייצא סיכום היום</button><button class="secondary" id="reset">יום חדש</button></div></section>
+  <div class="motivation" id="quote">״אני לא צריך לשנות הכול ביום אחד. אני רק צריך להמשיך.״ 💚</div>
+  <p class="foot">הנתונים נשמרים בדפדפן במכשיר הזה. תזכורות דפדפן פועלות רק אם מאשרים אותן והאפליקציה פתוחה. לתזכורת אמינה גם כשהאפליקציה סגורה, השאר את תזכורות ChatGPT שהגדרנו פעילות.</p>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const $=id=>document.getElementById(id);
+const todayKey=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const initial={activity:false,vegetable:false,snacks:false,smokeFree:false,lunch:false,cigarettes:0,note:""};
+let state={};
+function load(){try{const all=JSON.parse(localStorage.getItem('itzik-health-v1')||'{}');state=all[todayKey()]||initial;state={...initial,...state};}catch(e){state={...initial}}}
+function persist(){try{let all=JSON.parse(localStorage.getItem('itzik-health-v1')||'{}');all[todayKey()]=state;localStorage.setItem('itzik-health-v1',JSON.stringify(all));}catch(e){} render()}
+function toast(msg){$('toast').textContent=msg;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2300)}
+function render(){
+ const names={activity:'activity',vegetable:'vegetable',snacks:'snacks',smokeFree:'smokeFree'};
+ Object.keys(names).forEach(k=>{const c=$('card-'+k),b=c.querySelector('button');c.classList.toggle('done',!!state[k]);b.textContent=state[k]?'סומן ✓':'סמן שביצעתי';});
+ const done=['activity','vegetable','snacks','smokeFree'].filter(k=>state[k]).length;
+ $('progressText').textContent=`${done} מתוך 4`; $('percent').textContent=Math.round(done/4*100)+'%'; $('progressBar').style.width=(done/4*100)+'%';
+ $('encouragement').textContent=done===4?'איזה יופי! עמדת בכל ארבעת היעדים היום 🎉':done===0?'מתחילים בקטן — גם צעד אחד הוא התקדמות.':`כבר סימנת ${done} ${done===1?'יעד':'יעדים'}. ממשיכים בקצב שלך!`;
+ $('cigCount').textContent=state.cigarettes; $('lunchStatus').textContent=state.lunch?'ארוחת הצהריים סומנה להיום ✓':'עוד לא סומן היום'; $('note').value=state.note||'';
+}
+document.querySelectorAll('[data-habit]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.habit;state[k]=!state[k];persist();toast(state[k]?'כל הכבוד! עוד צעד קטן קדימה 🌱':'עודכן. אפשר לנסות שוב.');}));
+$('lunchDone').addEventListener('click',()=>{state.lunch=true;persist();toast('בתיאבון! ארוחת הצהריים סומנה.');});
+$('plus').addEventListener('click',()=>{state.cigarettes++;persist()});$('minus').addEventListener('click',()=>{state.cigarettes=Math.max(0,state.cigarettes-1);persist()});
+$('saveNote').addEventListener('click',()=>{state.note=$('note').value;persist();toast('ההערה נשמרה במכשיר הזה.')});
+$('reset').addEventListener('click',()=>{if(confirm('לאפס את הסימונים של היום? הסיכום של היום יימחק.')){state={...initial};persist();toast('התחלנו מחדש. יום חדש, הזדמנות חדשה.')}});
+$('export').addEventListener('click',()=>{state.note=$('note').value;persist();const txt=`מעקב הבריאות שלי — ${$('today').textContent}\nפעילות גופנית: ${state.activity?'בוצעה':'לא סומנה'}\nירק בארוחת הבוקר: ${state.vegetable?'כן':'לא סומן'}\nללא נשנושים עד אחרי צהריים: ${state.snacks?'עמדתי ביעד':'לא סומן'}\nיום ללא סיגריות: ${state.smokeFree?'כן':'לא סומן'}\nארוחת צהריים: ${state.lunch?'סומנה':'לא סומנה'}\nסיגריות שדווחו היום: ${state.cigarettes}\nהערה: ${state.note||'—'}`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));a.download='סיכום-בריאות-'+todayKey()+'.txt';a.click();URL.revokeObjectURL(a.href)});
+const d=new Date();$('today').textContent=d.toLocaleDateString('he-IL',{weekday:'long',day:'numeric',month:'long'});
+const start=new Date(2026,9,3);const today=new Date(d.getFullYear(),d.getMonth(),d.getDate());const days=Math.max(0,Math.floor((today-start)/86400000));$('smokeDays').textContent=`${days} ימים בלי סיגריות!`;
+load();render();
+// Optional browser reminders while this page remains open.
+if('Notification' in window && Notification.permission==='granted'){
+ let lastLunch='',lastExercise='';
+ setInterval(()=>{const now=new Date(),key=todayKey(),hm=now.getHours()+':'+String(now.getMinutes()).padStart(2,'0');
+ if(hm==='13:00'&&lastLunch!==key){new Notification('הגיע זמן ארוחת הצהריים 🍽️',{body:'עוצרים לארוחה מסודרת. רעב אמיתי הוא לא נשנוש!'});lastLunch=key}
+ if(hm==='22:00'&&lastExercise!==key){new Notification('5 דקות בשבילך 💪',{body:'צעידה, קימה מכיסא והרמת ברכיים. כל צעד נחשב!'});lastExercise=key}
+ },20000);
+}
+</script>
+<script>
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
